@@ -6,6 +6,10 @@ and add these alias'es
     alias vi='vim'
     alias vim='vim -p -i ~/.vim_<prefix>/.viminfo -u ~/.vim_<prefix>/.vimrc'
 
+install plugins (using https://github.com/tpope/vim-pathogen) into ./bundle
+    ./install_plugins
+
+
 ## tips / tutorials
 
 
