@@ -9,11 +9,15 @@ set nowrap              " dont wrap lines
 set scrolloff=5         " 2 lines above/below cursor when scrolling
 set number              " show line numbers
 set showmatch           " show matching bracket (briefly jump)
+set matchtime=5         " Bracket blinking.
+set shiftround          " use multiple of shiftwidth when indenting with '<' and '>'
 set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
 set ruler               " show cursor position in status bar
 set title               " show file in titlebar
 set wildmenu            " completion with menu
+set nolist
+set listchars=tab:·\ ,eol:¶,trail:·,extends:»,precedes:«,nbsp:•
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " editor settings
@@ -26,10 +30,17 @@ set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set nobackup            " no backup~ files.
-set wrapscan			" wrap when searching
+set wrapscan            " wrap when searching
 set tabstop=4           " number of spaces a tab counts for
 set shiftwidth=4        " spaces for autoindents
-"set expandtab           " turn a tabs into spaces
+"set expandtab          " turn a tabs into spaces
+set undolevels=1000     " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title               " change the terminal's title
+set visualbell          " don't beep
+set noerrorbells        " don't beep
+set gdefault					" the /g flag on :s substitutions by default
+set virtualedit=onemore " allow for cursor beyond last character
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " misc settings
@@ -39,7 +50,7 @@ set fileformat=unix     " file mode is unix
 " RESEARCH MEANING OF:
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden              " remember undo after quitting
-set history=50          " keep 50 lines of command history
+set history=1000        " keep 1000 lines of command history
 
 set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
 filetype plugin indent on
@@ -52,6 +63,11 @@ if &t_Co > 2 || has("gui_running")
 	set hlsearch       " highlight search (very useful!)
 	set incsearch      " search incremently (search while typing)
 	colorscheme desert
+	if has("gui_running")
+		set cursorline " highlight current line
+		hi cursorline guibg=#444444 " highlight bg color of current line
+		hi CursorColumn guibg=#444444 " highlight cursor
+	endif
 endif
 
 
@@ -109,7 +125,7 @@ endif " has("autocmd")
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " establish vim config root
 if !exists("$VIMROOT")
-	let $VIMROOT='~/.vimXXX/'
+	let $VIMROOT='~/.vim/'
 	if filereadable(expand("~/.vim/config/.VIMROOT"))
 		source ~/.vim/config/.VIMROOT
 	else
@@ -118,6 +134,29 @@ if !exists("$VIMROOT")
 endif
 
 " enable pathogen 
+source $VIMROOT/autoload/pathogen.vim
 call pathogen#infect($VIMROOT . "/bundle")
 
 source $VIMROOT/config/keymaps.vim
+
+
+
+if has('cmdline_info')
+set ruler " show the ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+set showcmd " show partial commands in status line and
+" selected characters/lines in visual mode
+endif
+
+if has('statusline')
+        set laststatus=2
+
+" Broken down into easily includeable segments
+set statusline=%<%f\ " Filename
+set statusline+=%w%h%m%r " Options
+set statusline+=%{fugitive#statusline()} " Git Hotness
+set statusline+=\ [%{&ff}/%Y] " filetype
+set statusline+=\ [%{getcwd()}] " current dir
+"set statusline+=\ [A=\%03.3b/H=\%02.2B] " ASCII / Hexadecimal value of char
+set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+endif
