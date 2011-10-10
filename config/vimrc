@@ -2,9 +2,15 @@
 " reset to vim-defaults
 set nocompatible      " use vim-defaults instead of vi-defaults (easier, more user friendly)
 
+" Get that filetype stuff happening
+filetype on
+filetype plugin on
+filetype indent on
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " display settings
 set background=dark     " enable for dark terminals
+set lazyredraw          " Don't update the display while executing macros 
 set nowrap              " dont wrap lines
 set scrolloff=5         " 2 lines above/below cursor when scrolling
 set number              " show line numbers
