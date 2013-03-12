@@ -13,3 +13,4 @@ install() {
 
 install tpope vim-fugitive
 install xolox vim-lua-ftplugin
+install evanmiller nginx-vim-syntax
