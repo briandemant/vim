@@ -11,6 +11,7 @@ install() {
 	fi
 }
 
-install tpope vim-fugitive
-#install xolox vim-lua-ftplugin
-install evanmiller nginx-vim-syntax
+install chr4 nginx.vim
+install fatih vim-go
+install Shougo vimproc && install Quramy tsuquyomi && cp lib/vimproc_linux64.so bundle/Shougo-vimproc/lib/vimproc_linux64.so
+install jparise vim-graphql
