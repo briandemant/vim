@@ -11,7 +11,7 @@ if [[ "" == "$prefix" ]]; then
 	ln -s $dst/config/vimrc ~/.vimrc
 	ln -s $dst/config/gvimrc ~/.gvimrc
 else
-	echo "PLEASE ADD THIS TO .bashrc"
+	echo "${YELLOW}PLEASE ADD THIS TO .bashrc${RESET}"
 	echo "alias vim='vim -p -i $dst/.viminfo -u $dst/config/vimrc'"
 	echo "alias vi='vim'"
 fi

@@ -12,6 +12,10 @@ install() {
 }
 
 install chr4 nginx.vim
-install fatih vim-go
-install Shougo vimproc && install Quramy tsuquyomi && cp lib/vimproc_linux64.so bundle/Shougo-vimproc/lib/vimproc_linux64.so
-install jparise vim-graphql
+
+# only one of these
+install leafgarland typescript-vim
+#install Shougo vimproc && install Quramy tsuquyomi && cp lib/vimproc_linux64.so bundle/Shougo-vimproc/lib/vimproc_linux64.so
+
+#install fatih vim-go
+#install jparise vim-graphql
