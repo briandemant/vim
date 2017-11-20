@@ -2,15 +2,20 @@
 install() {
 	if [[ -e bundle/$1-$2 ]] ; then
 		cd bundle/$1-$2
-		echo "Updating $1-$2"
+		echo -e "${YELLOW}Updating ${RED}$1-$2${RESET}"
 		git pull
 		cd ../..
 	else
-		echo "Installing $1-$2"
+		echo -e "${GREEN}Installing ${RED}$1-$2${RESET}"
 		git clone https://github.com/$1/$2.git bundle/$1-$2
 	fi
 }
 
-install tpope vim-fugitive
-#install xolox vim-lua-ftplugin
-install evanmiller nginx-vim-syntax
+install chr4 nginx.vim
+
+# only one of these
+install leafgarland typescript-vim
+#install Shougo vimproc && install Quramy tsuquyomi && cp lib/vimproc_linux64.so bundle/Shougo-vimproc/lib/vimproc_linux64.so
+
+#install fatih vim-go
+#install jparise vim-graphql
