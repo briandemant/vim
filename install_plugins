@@ -17,5 +17,6 @@ install chr4 nginx.vim
 install leafgarland typescript-vim
 #install Shougo vimproc && install Quramy tsuquyomi && cp lib/vimproc_linux64.so bundle/Shougo-vimproc/lib/vimproc_linux64.so
 
+install tpope vim-markdown
 #install fatih vim-go
 #install jparise vim-graphql
